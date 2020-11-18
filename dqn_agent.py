@@ -5,6 +5,7 @@ import random, copy
 import numpy as np
 from dialogue_config import rule_requests, agent_actions
 import re
+import math
 
 
 # Some of the code based off of https://jaromiru.com/2016/09/27/lets-make-a-dqn-theory/
@@ -25,7 +26,8 @@ class DQNAgent:
             constants (dict): Loaded constants in dict
 
         """
-
+        
+        self.steps = 0
         self.C = constants['agent']
         self.memory = []
         self.memory_index = 0
@@ -222,6 +224,9 @@ class DQNAgent:
             self.memory.append(None)
         self.memory[self.memory_index] = (state, action, reward, next_state, done)
         self.memory_index = (self.memory_index + 1) % self.max_memory_size
+        self.steps += 1
+        # REMOVE HARDOCDED
+        self.eps = 0.01 + (1 - 0.01) * math.exp(-0.001 * self.steps)
 
     def empty_memory(self):
         """Empties the memory and resets the memory index."""
