@@ -224,9 +224,9 @@ class DQNAgent:
             self.memory.append(None)
         self.memory[self.memory_index] = (state, action, reward, next_state, done)
         self.memory_index = (self.memory_index + 1) % self.max_memory_size
-        self.steps += 1
         # REMOVE HARDOCDED
-        self.eps = 0.01 + (1 - 0.01) * math.exp(-0.001 * self.steps)
+        if self.eps > self.epsilon_min:
+            self.eps *= 0.995 # self.epsilon_decay
 
     def empty_memory(self):
         """Empties the memory and resets the memory index."""
