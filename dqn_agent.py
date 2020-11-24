@@ -33,6 +33,7 @@ class DQNAgent:
         self.memory_index = 0
         self.max_memory_size = self.C['max_mem_size']
         self.eps = self.C['epsilon_init']
+        self.epsilon_min = self.C['epsilon_min']
         self.vanilla = self.C['vanilla']
         self.lr = self.C['learning_rate']
         self.gamma = self.C['gamma']
