@@ -19,8 +19,8 @@
     "learning_rate": 1e-3,
     "batch_size": 16,
     "dqn_hidden_size": 80,
-    "epsilon_init": 0.99,
-    "epsilon_min": 0.01,
+    "epsilon_init": 0.0,
+    "epsilon_min": 0.00,
     "epsilon_max": 1.0,
     "gamma": 0.9,
     "max_mem_size": 500000

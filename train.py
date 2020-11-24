@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
 def run_round(state, warmup=False):
     # 1) Agent takes action given state tracker's representation of dialogue (state)
-    agent_action_index, agent_action = dqn_agent.get_action(state, use_rule=warmup)
+    agent_action_index, agent_action = dqn_agent.get_action(state, use_rule=warmup) ### checa epsilon
     # 2) Update state tracker with the agent's action
     state_tracker.update_state_agent(agent_action)
     # 3) User takes action given agent action
@@ -78,7 +78,7 @@ def run_round(state, warmup=False):
     state_tracker.update_state_user(user_action)
     # 6) Get next state and add experience
     next_state = state_tracker.get_state(done)
-    dqn_agent.add_experience(state, agent_action_index, reward, next_state, done)
+    dqn_agent.add_experience(state, agent_action_index, reward, next_state, done) ### modifca epsilon
 
     return next_state, reward, done, success
 
